@@ -21,10 +21,12 @@
   "homepage": "https://github.com/Kenec/Grocerrific-Pluralsight#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "css-loader": "^1.0.1",
     "express": "^4.16.4",
     "path": "^0.12.7",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "style-loader": "^0.23.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
