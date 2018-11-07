@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node server/index.js",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:client": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,36 @@
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
+    "coveralls": "^3.0.2",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jest": "^23.6.0",
     "prop-types": "^15.6.2",
+    "redux-mock-store": "^1.5.3",
+    "regenerator-runtime": "^0.12.1",
+    "sinon": "^7.1.1",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/client/__tests__/setup/setupEnzyme.js",
+    "testPathIgnorePatterns": [
+      "<rootDir>/client/__tests__/setup/"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/client/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/client/__mocks__/styleMock.js"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "client/components/**",
+      "client/actions/*",
+      "client/reducers/*"
+    ]
   }
 }
