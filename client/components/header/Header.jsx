@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Header = ({ counter }) => {
   return (
@@ -18,6 +19,10 @@ const Header = ({ counter }) => {
       </div>
     </nav>
   );
+}
+
+Header.propType = {
+  counter: PropTypes.number.isRequired
 }
 
 export default Header;
