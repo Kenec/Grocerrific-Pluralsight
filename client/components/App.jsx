@@ -1,8 +1,10 @@
 import React from 'react';
+import Header from '../components/header/Header';
+import '../styles/main.css';
 
 const App = () => (
   <div>
-    <h1>Grocerrific App</h1>
+    <Header counter={0} />
   </div>
 );
 

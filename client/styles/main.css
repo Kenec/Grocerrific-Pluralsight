@@ -1,0 +1,12 @@
+.cart {
+  text-align: center;
+}
+
+.counter {
+  padding: 5px;
+  background-color: rgb(185, 135, 135);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 8px;
+}
