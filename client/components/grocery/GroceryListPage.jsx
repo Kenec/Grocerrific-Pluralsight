@@ -14,14 +14,13 @@ class GroceryListPage extends PureComponent {
               <th scope="col">Groceries</th>
               <th scope="col"></th>
               <th scope="col"></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <GroceryListItem />
-            <GroceryListItem />
-            <GroceryListItem />
-            <GroceryListItem />
-            <GroceryListItem />
+            {
+              this.props.groceries.map( grocery => <GroceryListItem key={"id: "+ grocery.id} grocery={grocery}/> )
+            }
           </tbody>
         </table>
       </div>
@@ -30,7 +29,7 @@ class GroceryListPage extends PureComponent {
 }
 
 GroceryListPage.propTypes = {
-
+  groceries: PropTypes.array.isRequired
 };
 
 export default GroceryListPage;
