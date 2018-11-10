@@ -50,7 +50,7 @@ export class App extends PureComponent {
 
 App.propTypes = {
   groceries: PropTypes.array.isRequired,
-  bought: PropTypes.array.bought
+  bought: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
