@@ -5,7 +5,8 @@ import { App } from '../../components/App';
 
 describe('<App />', () => {
   const props = {
-    groceries: []
+    groceries: [],
+    bought: []
   }
   const wrapper = shallow(<App {...props}/>);
   it('should render the App contents', () => {

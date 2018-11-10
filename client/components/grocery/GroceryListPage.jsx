@@ -5,6 +5,7 @@ import GroceryListItem from './GroceryListItem';
 class GroceryListPage extends PureComponent {
 
   render() {
+    const { removeGrocery, buyOrDropGrocery } = this.props;
     return (
       <div>
         <table className="table table-striped">
@@ -19,7 +20,14 @@ class GroceryListPage extends PureComponent {
           </thead>
           <tbody>
             {
-              this.props.groceries.map( grocery => <GroceryListItem key={"id: "+ grocery.id} grocery={grocery}/> )
+              this.props.groceries.map( (grocery, index) => 
+                  <GroceryListItem 
+                    key={"id: "+ index}
+                    index={index}
+                    buyOrDropGrocery={buyOrDropGrocery} 
+                    removeGrocery={removeGrocery} 
+                    grocery={grocery}/> 
+              )
             }
           </tbody>
         </table>
@@ -29,7 +37,8 @@ class GroceryListPage extends PureComponent {
 }
 
 GroceryListPage.propTypes = {
-  groceries: PropTypes.array.isRequired
+  groceries: PropTypes.array.isRequired,
+  removeGrocery: PropTypes.func.isRequired
 };
 
 export default GroceryListPage;
