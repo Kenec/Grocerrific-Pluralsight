@@ -1,4 +1,4 @@
 export const ADD_GROCERY = "ADD_GROCERY";
-export const EDIT_GROCERY = "EDIT_GROCERY";
 export const LOAD_GROCERIES = "LOAD_GROCERIES";
 export const REMOVE_GROCERY = "REMOVE_GROCERY";
+export const BUY_OR_DROP_GROCERY = "BUY_OR_DROP_GROCERY";
