@@ -19,6 +19,9 @@ export default function groceryReducer(state = initialState.groceries, action) {
         Object.assign({}, action.grocery),
         ...state.filter(grocery => grocery.id !== action.grocery.id)
       ];
+
+    case types.GROCCERY_ERROR:
+      return action.error;
       
     default:
       return state;
