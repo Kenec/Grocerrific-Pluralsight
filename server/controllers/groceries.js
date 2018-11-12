@@ -41,6 +41,7 @@ export default {
           error
         });
       }
+      newGroceryItem.id = newGrocery._id;
       return res.status(201).send(newGroceryItem);
     });
   },
