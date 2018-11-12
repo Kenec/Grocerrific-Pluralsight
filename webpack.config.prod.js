@@ -1,7 +1,7 @@
-import path from 'path';
-import webpack from 'webpack';
-import dotenv from 'dotenv';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 dotenv.config();
 
