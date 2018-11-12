@@ -1,11 +1,7 @@
 import toastr from 'toastr';
+import axios from 'axios';
 import swal from 'sweetalert';
 import * as types from './actionTypes';
-
-// TODO
-// Remove this as soon as you connect to the api
-// This is just for testing
-import initialState from '../reducers/initialState'; 
 
 export const addGrocerySuccess = (grocery) => ({
   type: types.ADD_GROCERY,
@@ -27,39 +23,55 @@ export const buyOrDropGrocerySuccess = (grocery) => ({
   grocery
 });
 
+export const groceryError = error => ({
+  type: types.GROCCERY_ERROR,
+  error
+});
+
 export const loadGrocery = () => (
-  dispatch => dispatch(loadGrocerySuccess(initialState.groceries))
+  dispatch => axios.get('/api/v1/grocerries')
+  .then(res => {
+    dispatch(loadGrocerySuccess(res.data.groceries));
+  }).catch(error => {
+    dispatch(groceryError(error));
+  })
 );
 
 export const buyOrDropGrocery = (id) => (
-  (dispatch, getState) => {
-    const groceries = getState().groceries;
-    const grocery = groceries.filter(grocery => grocery.id === id);
-    
-    const newGrocery = { 
-      id: grocery[0].id,
-      name: grocery[0].name,
-      bought: !grocery[0].bought,
-      qty: grocery[0].qty
-    }
-    dispatch(buyOrDropGrocerySuccess(newGrocery));
-  }
+  dispatch => axios.put(`/api/v1/grocerries/${id}`, {})
+    .then(res => {
+      dispatch(buyOrDropGrocerySuccess(res.data.grocery));
+      toastr.success('Grocery bought!')
+    }).catch(error => {
+      dispatch(groceryError(error));
+      toastr.error(error);
+    })
 );
 
 export const addGrocery = (grocery) => (
-  dispatch => { 
-    const newGrocery = { id: Math.floor(Math.random()*10 + 6), name: grocery, bought: false, qty: 9 }
-    dispatch(addGrocerySuccess(newGrocery)) 
-  }
+  dispatch => axios.post('/api/v1/grocerries', { grocery })
+    .then(res => {
+      dispatch(addGrocerySuccess(res.data));
+      toastr.success('Grocery Added!')
+    }).catch(error => {
+      dispatch(groceryError(error));
+      toastr.error(error);
+    })
 );
 
 export const removeGrocery = (id) => (
-  (dispatch, getState) => {
+  dispatch => {
     const message = 'Do you want to remove this Grocery';
     const confirm = confirmAction(message);
     confirm.then((response) => {
       if (response) {
-        dispatch(removeGrocerySuccess(id));
+        axios.delete(`/api/v1/grocerries/${id}`, {})
+          .then(res => {
+            dispatch(removeGrocerySuccess(id));
+          }).catch(error => {
+            dispatch(groceryError(error));
+            toastr.error(error);
+          })
       }
     });
   }
@@ -71,4 +83,4 @@ const confirmAction = (message) => {
   });
   
   return confirm;
-}
+};
