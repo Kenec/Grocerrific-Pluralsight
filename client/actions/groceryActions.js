@@ -77,7 +77,7 @@ export const removeGrocery = (id) => (
   }
 );
 
-const confirmAction = (message) => {
+export const confirmAction = (message) => {
   const confirm = swal(message, {
     buttons: { cancel: true, confirm: true }
   });
