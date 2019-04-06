@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node server/index.js",
     "build": "webpack --mode production",
-    "test:client": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test:client": "jest --coverage && cat ./coverage/lcov.info | rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
